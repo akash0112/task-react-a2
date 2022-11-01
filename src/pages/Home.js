@@ -6,12 +6,12 @@ const Home = () => {
         axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
     }, [data])
     const handleDelete = (item) => {
-        axios.delete(process.env.REACT_APP_API_URL+ `delete/${item._id}`)
+        axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
     }
     return (
         <div>
             <div class="flex flex-col">
-                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="overflow-x-auto">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="overflow-hidden">
                             <table class="min-w-full border text-center">
@@ -26,7 +26,13 @@ const Home = () => {
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
                                             Status
                                         </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
+                                            Total Days
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
+                                            Total Hours
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
                                             Delete
                                         </th>
                                     </tr>
@@ -41,8 +47,14 @@ const Home = () => {
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {item.status}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <button className=' rounded-md border px-4 py-2 bg-red-600' onClick={()=>handleDelete(item)}>Delete</button>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
+                                                24 hours
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
+                                                2 days
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
+                                                <button className=' rounded-md border px-4 py-2 bg-red-600' onClick={() => handleDelete(item)}>Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>
