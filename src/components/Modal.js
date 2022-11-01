@@ -46,8 +46,9 @@ export default function BasicModal({ open, setOpen, handleClose, handleOpen }) {
                             name='task'
                             onChange={handleChange}
                             label="Task"
-                            type="task"
+                            type="text"
                             fullWidth
+                            autoComplete='off'
                             variant="outlined"
                         />
                         <TextField
@@ -56,7 +57,8 @@ export default function BasicModal({ open, setOpen, handleClose, handleOpen }) {
                             id="name"
                             name='status'
                             label="Status"
-                            type="status"
+                            type="text"
+                            autoComplete='off'
                             onChange={handleChange}
                             fullWidth
                             variant="outlined"
