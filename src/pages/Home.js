@@ -16,9 +16,13 @@ const Home = () => {
         {
             axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"active"})
         }
-        if(status==="active")
+       else if(status==="active")
         {
             axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"done"})
+        }
+        else
+        {
+            axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"inactive"})
         }
     }
     return (
