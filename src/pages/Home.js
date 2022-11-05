@@ -1,9 +1,7 @@
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, Collapse, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 const Home = () => {
     const [data, setdata] = useState([])
     useEffect(() => {
@@ -12,7 +10,9 @@ const Home = () => {
     const handleDelete = (item) => {
         axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
     }
-    const [open, setOpen] = React.useState(false);
+    const handleEdit = (item) => {
+        axios.delete(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`)
+    }
     return (
         <div>
             <div class="flex flex-col">
@@ -30,6 +30,9 @@ const Home = () => {
                                         </th>
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
                                             Status
+                                        </th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
+                                            Related
                                         </th>
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
                                             Total Hours
@@ -52,6 +55,9 @@ const Home = () => {
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {item.status}
                                             </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
+                                                health
+                                            </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
                                                 24 hours
                                             </td>
@@ -59,35 +65,8 @@ const Home = () => {
                                                 2 days
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap border-l">
-                                                <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleDelete(item)}><EditIcon /></button>
+                                                <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleEdit(item)}><EditIcon /></button>
                                                 <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleDelete(item)}><DeleteIcon /></button>
-                                                <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => setOpen(!open)}><ExpandMoreIcon /></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td colspan="6">
-                                                <Collapse in={open} timeout="auto" unmountOnExit>
-                                                    <div>
-                                                        <div class="flex flex-col">
-                                                            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                                                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                                                                    <div class="overflow-hidden">
-                                                                        <table class="min-w-full">
-                                                                            <tbody>
-                                                                                <tr class="bg-gray-100 border-b">
-                                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">startdate</td>
-                                                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                                                        Mark
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Collapse>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { FormControl, FormGroup, TextField } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 import axios from 'axios';
 
 const style = {
@@ -17,7 +16,7 @@ const style = {
     borderRadius: '2%'
 };
 
-export default function BasicModal({ open, setOpen, handleClose, handleOpen }) {
+export default function BasicModal({ open, setOpen, handleClose, handleOpen,btnname }) {
     const [data, setdata] = React.useState({ task: '', status: '' })
     const handleChange = (e) => {
         const { name, value } = e.target
