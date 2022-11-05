@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 const Home = () => {
     const [data, setdata] = useState([])
+    const [editopen, seteditopen] = useState(false)
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
     }, [data])
@@ -11,7 +12,17 @@ const Home = () => {
         axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
     }
     const handleEdit = (item) => {
-        axios.delete(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`)
+        seteditopen(true)
+        console.log(item.status);
+        const {status}=item
+        if(status==="inactive")
+        {
+            axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"active"})
+        }
+        if(status==="active")
+        {
+            axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"done"})
+        }
     }
     return (
         <div>
@@ -47,7 +58,7 @@ const Home = () => {
                                                 {item.status}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap border-l">
-                                                <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleEdit(item)}><EditIcon /></button>
+                                                <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleEdit(item)}><EditIcon/></button>
                                                 <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleDelete(item)}><DeleteIcon /></button>
                                             </td>
                                         </tr>
