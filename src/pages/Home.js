@@ -4,7 +4,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 const Home = () => {
     const [data, setdata] = useState([])
-    const [editopen, seteditopen] = useState(false)
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
     }, [data])
@@ -12,8 +11,6 @@ const Home = () => {
         axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
     }
     const handleEdit = (item) => {
-        seteditopen(true)
-        console.log(item.status);
         const {status}=item
         if(status==="inactive")
         {
