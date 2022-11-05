@@ -32,15 +32,6 @@ const Home = () => {
                                             Status
                                         </th>
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
-                                            Related
-                                        </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
-                                            Total Hours
-                                        </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
-                                            Total Days
-                                        </th>
-                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
                                             Delete
                                         </th>
                                     </tr>
@@ -54,15 +45,6 @@ const Home = () => {
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
                                                 {item.status}
-                                            </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
-                                                health
-                                            </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
-                                                24 hours
-                                            </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-l">
-                                                2 days
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap border-l">
                                                 <button className=' rounded-md border px-2 mx-2 py-2 ' onClick={() => handleEdit(item)}><EditIcon /></button>
