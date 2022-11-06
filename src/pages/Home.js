@@ -4,9 +4,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 const Home = () => {
     const [data, setdata] = useState([])
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
-    }, [data])
+        setLoading(true)
+    }, [loading])
     const handleDelete = (item) => {
         axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
     }
