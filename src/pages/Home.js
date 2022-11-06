@@ -6,8 +6,9 @@ const Home = () => {
     const [data, setdata] = useState([])
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
         setLoading(true)
+        axios.get(process.env.REACT_APP_API_URL + 'getall').then((res) => setdata(res.data))
+        setLoading(false)
     }, [loading])
     const handleDelete = (item) => {
         axios.delete(process.env.REACT_APP_API_URL + `delete/${item._id}`)
@@ -16,14 +17,17 @@ const Home = () => {
         const {status}=item
         if(status==="inactive")
         {
+            setLoading(true)
             axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"active"})
         }
        else if(status==="active")
         {
+            setLoading(true)
             axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"done"})
         }
         else
         {
+            setLoading(true)
             axios.put(process.env.REACT_APP_API_URL + `updatebyid/${item._id}`,{status:"inactive"})
         }
     }
